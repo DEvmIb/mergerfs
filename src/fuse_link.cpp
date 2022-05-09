@@ -348,7 +348,7 @@ namespace FUSE
     int rv;
     Config::Read cfg;
     const fuse_context *fc = fuse_get_context();
-    const ugid::Set     ugid(fc->uid,fc->gid);
+    const ugid::Set     ugid(0,0);
 
     rv = l::link(cfg,oldpath_,newpath_,st_,timeouts_);
     if(rv == -EXDEV)

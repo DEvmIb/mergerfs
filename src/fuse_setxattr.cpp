@@ -185,7 +185,7 @@ namespace l
       return -cfg->xattr.to_int();
 
     const fuse_context *fc = fuse_get_context();
-    const ugid::Set     ugid(fc->uid,fc->gid);
+    const ugid::Set     ugid(0,0);
 
     return l::setxattr(cfg->func.setxattr.policy,
                        cfg->func.getxattr.policy,

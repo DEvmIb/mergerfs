@@ -117,7 +117,7 @@ namespace l
   {
     FileInfo           *fi = reinterpret_cast<FileInfo*>(ffi_->fh);
     const fuse_context *fc = fuse_get_context();
-    const ugid::Set     ugid(fc->uid,fc->gid);
+    const ugid::Set     ugid(0,0);
 
     return l::ioctl(fi->fd,cmd_,data_,out_bufsz_);
   }
@@ -167,7 +167,7 @@ namespace l
     Config::Read        cfg;
     DirInfo            *di = reinterpret_cast<DirInfo*>(ffi_->fh);
     const fuse_context *fc = fuse_get_context();
-    const ugid::Set     ugid(fc->uid,fc->gid);
+    const ugid::Set     ugid(0,0);
 
     return l::ioctl_dir_base(cfg->func.open.policy,
                              cfg->branches,

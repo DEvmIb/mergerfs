@@ -128,7 +128,7 @@ namespace FUSE
       return -cfg->xattr.to_int();
 
     const fuse_context *fc = fuse_get_context();
-    const ugid::Set     ugid(fc->uid,fc->gid);
+    const ugid::Set     ugid(0,0);
 
     return l::removexattr(cfg->func.removexattr.policy,
                           cfg->func.getxattr.policy,

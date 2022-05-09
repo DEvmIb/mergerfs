@@ -121,7 +121,7 @@ namespace FUSE
   {
     Config::Read cfg;
     const fuse_context *fc = fuse_get_context();
-    const ugid::Set     ugid(fc->uid,fc->gid);
+    const ugid::Set     ugid(0,0);
 
     return l::rmdir(cfg->func.rmdir.policy,
                     cfg->branches,
