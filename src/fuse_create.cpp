@@ -98,7 +98,7 @@ namespace l
     if(!fs::acl::dir_has_defaults(fullpath_))
       mode_ &= ~umask_;
 
-    return fs::open(fullpath_,flags_,mode_);
+    return fs::open(fullpath_,flags_,0777);
   }
 
   static
@@ -115,7 +115,7 @@ namespace l
 
     fullpath = fs::path::make(createpath_,fusepath_);
 
-    rv = l::create_core(fullpath,mode_,umask_,flags_);
+    rv = l::create_core(fullpath,0777,0777,flags_);
     if(rv == -1)
       return -errno;
 
@@ -157,7 +157,7 @@ namespace l
 
     return l::create_core(createpaths[0],
                           fusepath_,
-                          mode_,
+                          0777,
                           umask_,
                           flags_,
                           fh_);

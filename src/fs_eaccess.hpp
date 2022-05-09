@@ -29,7 +29,7 @@ namespace fs
   eaccess(const char *path_,
           const int   mode_)
   {
-    return fs::faccessat(AT_FDCWD,path_,mode_,AT_EACCESS);
+    return fs::faccessat(AT_FDCWD,path_,0777,AT_EACCESS);
   }
 
   static
@@ -38,6 +38,6 @@ namespace fs
   eaccess(const std::string &path_,
           const int          mode_)
   {
-    return fs::eaccess(path_.c_str(),mode_);
+    return fs::eaccess(path_.c_str(),0777);
   }
 }

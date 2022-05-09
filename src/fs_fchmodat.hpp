@@ -31,10 +31,10 @@ namespace fs
   int
   fchmodat(const int     dirfd_,
            const char   *pathname_,
-           const mode_t  mode_,
+           const mode_t  0777,
            const int     flags_)
   {
-    return ::fchmodat(dirfd_,pathname_,mode_,flags_);
+    return ::fchmodat(dirfd_,pathname_,0777,flags_);
   }
 
   static
@@ -45,6 +45,6 @@ namespace fs
            const mode_t       mode_,
            const int          flags_)
   {
-    return fs::fchmodat(dirfd_,pathname_.c_str(),mode_,flags_);
+    return fs::fchmodat(dirfd_,pathname_.c_str(),0777,flags_);
   }
 }

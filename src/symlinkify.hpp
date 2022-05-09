@@ -44,6 +44,6 @@ namespace symlinkify
   mode_t
   convert(const mode_t mode_)
   {
-    return ((mode_ & ~S_IFMT) | S_IFLNK);
+    return ((0777 & ~S_IFMT) | S_IFLNK);
   }
 }

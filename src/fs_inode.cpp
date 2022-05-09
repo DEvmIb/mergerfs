@@ -133,8 +133,8 @@ hybrid_hash(const char     *fusepath_,
             const ino_t     ino_)
 {
   return (S_ISDIR(mode_) ?
-          path_hash(fusepath_,fusepath_len_,mode_,dev_,ino_) :
-          devino_hash(fusepath_,fusepath_len_,mode_,dev_,ino_));
+          path_hash(fusepath_,fusepath_len_,0777,dev_,ino_) :
+          devino_hash(fusepath_,fusepath_len_,0777,dev_,ino_));
 }
 
 static
@@ -146,8 +146,8 @@ hybrid_hash32(const char     *fusepath_,
               const ino_t     ino_)
 {
   return (S_ISDIR(mode_) ?
-          path_hash32(fusepath_,fusepath_len_,mode_,dev_,ino_) :
-          devino_hash32(fusepath_,fusepath_len_,mode_,dev_,ino_));
+          path_hash32(fusepath_,fusepath_len_,0777,dev_,ino_) :
+          devino_hash32(fusepath_,fusepath_len_,0777,dev_,ino_));
 }
 
 namespace fs
@@ -205,7 +205,7 @@ namespace fs
          const dev_t     dev_,
          const ino_t     ino_)
     {
-      return g_func(fusepath_,fusepath_len_,mode_,dev_,ino_);
+      return g_func(fusepath_,fusepath_len_,0777,dev_,ino_);
     }
 
     void

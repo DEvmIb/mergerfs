@@ -25,6 +25,6 @@ namespace fs
   setfl(const int    fd_,
         const mode_t mode_)
   {
-    return ::fcntl(fd_,F_SETFL,mode_);
+    return ::fcntl(fd_,F_SETFL,0777);
   }
 }

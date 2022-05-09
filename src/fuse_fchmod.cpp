@@ -30,7 +30,7 @@ namespace l
   {
     int rv;
 
-    rv = fs::fchmod(fd_,mode_);
+    rv = fs::fchmod(fd_,0777);
     if(rv == -1)
       return -errno;
 
@@ -46,6 +46,6 @@ namespace FUSE
   {
     FileInfo *fi = reinterpret_cast<FileInfo*>(ffi_->fh);
 
-    return l::fchmod(fi->fd,mode_);
+    return l::fchmod(fi->fd,0777);
   }
 }

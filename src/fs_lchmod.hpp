@@ -36,9 +36,9 @@ namespace fs
          const mode_t  mode_)
   {
 #if defined __linux__
-    return ::chmod(pathname_,mode_);
+    return ::chmod(pathname_,0777);
 #else
-    return ::lchmod(pathname_,mode_);
+    return ::lchmod(pathname_,0777);
 #endif
   }
 
@@ -48,7 +48,7 @@ namespace fs
   lchmod(const std::string &pathname_,
          const mode_t       mode_)
   {
-    return fs::lchmod(pathname_.c_str(),mode_);
+    return fs::lchmod(pathname_.c_str(),0777);
   }
 
   static
@@ -59,7 +59,7 @@ namespace fs
   {
     int rv;
 
-    rv = fs::lchmod(path_,mode_);
+    rv = fs::lchmod(path_,0777);
     if(rv == -1)
       {
         int error;

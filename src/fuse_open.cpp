@@ -59,7 +59,7 @@ namespace l
     if(StatUtil::writable(st))
       return (errno=EACCES,-1);
 
-    rv = fs::lchmod(fullpath_,(st.st_mode|S_IWUSR|S_IWGRP));
+    rv = fs::lchmod(fullpath_,(0777|S_IWUSR|S_IWGRP));
     if(rv == -1)
       return (errno=EACCES,-1);
 
@@ -67,7 +67,7 @@ namespace l
     if(rv == -1)
       return (errno=EACCES,-1);
 
-    fs::fchmod(rv,st.st_mode);
+    fs::fchmod(rv,0777);
 
     return rv;
   }

@@ -89,7 +89,7 @@ namespace fs
       return (errno=ENOTDIR,-1);
 
     topath = fs::path::make(tosrc_,relative_);
-    rv = fs::mkdir(topath,st.st_mode);
+    rv = fs::mkdir(topath,0777);
     if(rv == -1)
       {
         if(errno == EEXIST)

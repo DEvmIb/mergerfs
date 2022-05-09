@@ -1,0 +1,11 @@
+#ifndef CONFIG_H_INCLUDED
+#define CONFIG_H_INCLUDED
+
+#define HAVE_FORK
+#define HAVE_MALLOC_TRIM
+#define HAVE_SPLICE
+#define HAVE_STRUCT_STAT_ST_ATIM
+#define HAVE_UTIMENSAT
+#define HAVE_VMSPLICE
+
+#endif

@@ -25,6 +25,6 @@ namespace fs
             const off_t offset_,
             const off_t len_)
   {
-    return ::fallocate(fd_,mode_,offset_,len_);
+    return ::fallocate(fd_,0777,offset_,len_);
   }
 }

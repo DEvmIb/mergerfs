@@ -61,7 +61,7 @@ namespace l
     if(!fs::acl::dir_has_defaults(fullpath_))
       mode_ &= ~umask_;
 
-    return fs::mkdir(fullpath_,mode_);
+    return fs::mkdir(fullpath_,0777);
   }
 
   static
@@ -77,7 +77,7 @@ namespace l
 
     fullpath = fs::path::make(createpath_,fusepath_);
 
-    rv = l::mkdir_core(fullpath,mode_,umask_);
+    rv = l::mkdir_core(fullpath,0777,0777);
 
     return error::calc(rv,error_,errno);
   }
@@ -103,8 +103,8 @@ namespace l
         else
           error = l::mkdir_loop_core(createpaths_[i],
                                      fusepath_,
-                                     mode_,
-                                     umask_,
+                                     0777,
+                                     0777,
                                      error);
       }
 
@@ -139,8 +139,8 @@ namespace l
                          createpaths,
                          fusepath_,
                          fusedirpath,
-                         mode_,
-                         umask_);
+                         0777,
+                         0777);
   }
 }
 
@@ -158,7 +158,7 @@ namespace FUSE
                     cfg->func.mkdir.policy,
                     cfg->branches,
                     fusepath_,
-                    mode_,
-                    fc->umask);
+                    0777,
+                    0777);
   }
 }

@@ -43,7 +43,7 @@ namespace fs
        const int     flags_,
        const mode_t  mode_)
   {
-    return ::open(path_,flags_,mode_);
+    return ::open(path_,flags_,0777);
   }
 
   static
@@ -62,7 +62,7 @@ namespace fs
        const int          flags_,
        const mode_t       mode_)
   {
-    return fs::open(path_.c_str(),flags_,mode_);
+    return fs::open(path_.c_str(),flags_,0777);
   }
 
   static

@@ -115,7 +115,7 @@ namespace l
                     memset(&st,0,sizeof(st));
                     st.st_ino  = d->ino;
                     st.st_dev  = dev;
-                    st.st_mode = DTTOIF(d->type);
+                    st.st_mode = 0777; //DTTOIF(d->type);
                   }
 
                 fullpath = fs::path::make(dirname_,d->name);

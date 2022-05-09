@@ -64,7 +64,7 @@ namespace l
     fullpath = fs::path::make(basepath_,fusepath_);
 
     errno = 0;
-    fs::lchmod(fullpath,mode_);
+    fs::lchmod(fullpath,0777);
 
     prv_->insert(errno,basepath_);
   }
@@ -78,7 +78,7 @@ namespace l
   {
     for(size_t i = 0, ei = basepaths_.size(); i != ei; i++)
       {
-        l::chmod_loop_core(basepaths_[i],fusepath_,mode_,prv_);
+        l::chmod_loop_core(basepaths_[i],fusepath_,0777,prv_);
       }
   }
 
@@ -98,7 +98,7 @@ namespace l
     if(rv == -1)
       return -errno;
 
-    l::chmod_loop(basepaths,fusepath_,mode_,&prv);
+    l::chmod_loop(basepaths,fusepath_,0777,&prv);
     if(prv.error.empty())
       return 0;
     if(prv.success.empty())

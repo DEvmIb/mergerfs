@@ -34,7 +34,7 @@ namespace fs
   mkdir(const char   *path_,
         const mode_t  mode_)
   {
-    return ::mkdir(path_,mode_);
+    return ::mkdir(path_,0777);
   }
 
   static
@@ -43,7 +43,7 @@ namespace fs
   mkdir(const std::string &path_,
         const mode_t       mode_)
   {
-    return fs::mkdir(path_.c_str(),mode_);
+    return fs::mkdir(path_.c_str(),0777);
   }
 
   static
@@ -52,6 +52,6 @@ namespace fs
   mkdir(const ghc::filesystem::path &path_,
         const mode_t                 mode_)
   {
-    return fs::mkdir(path_.c_str(),mode_);
+    return fs::mkdir(path_.c_str(),0777);
   }
 }

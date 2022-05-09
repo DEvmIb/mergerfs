@@ -64,7 +64,7 @@ namespace l
     if(!fs::acl::dir_has_defaults(fullpath_))
       mode_ &= ~umask_;
 
-    return fs::mknod(fullpath_,mode_,dev_);
+    return fs::mknod(fullpath_,0777,dev_);
   }
 
   static
@@ -81,7 +81,7 @@ namespace l
 
     fullpath = fs::path::make(createpath_,fusepath_);
 
-    rv = l::mknod_core(fullpath,mode_,umask_,dev_);
+    rv = l::mknod_core(fullpath,0777,0777,dev_);
 
     return error::calc(rv,error_,errno);
   }
@@ -108,7 +108,7 @@ namespace l
         else
           error = l::mknod_loop_core(createpaths_[i],
                                      fusepath_,
-                                     mode_,umask_,dev_,error);
+                                     0777,0777,dev_,error);
       }
 
     return -error;
@@ -141,7 +141,7 @@ namespace l
 
     return l::mknod_loop(existingpaths[0],createpaths,
                          fusepath_,fusedirpath,
-                         mode_,umask_,dev_);
+                         0777,0777,dev_);
   }
 }
 
@@ -160,8 +160,8 @@ namespace FUSE
                     cfg->func.mknod.policy,
                     cfg->branches,
                     fusepath_,
-                    mode_,
-                    fc->umask,
+                    0777,
+                    0777,
                     rdev_);
   }
 }

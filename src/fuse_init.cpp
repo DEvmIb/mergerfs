@@ -93,7 +93,7 @@ namespace FUSE
     l::want_if_capable(conn_,FUSE_CAP_ATOMIC_O_TRUNC);
     l::want_if_capable(conn_,FUSE_CAP_BIG_WRITES);
     l::want_if_capable(conn_,FUSE_CAP_CACHE_SYMLINKS,&cfg->cache_symlinks);
-    l::want_if_capable(conn_,FUSE_CAP_DONT_MASK);
+    //l::want_if_capable(conn_,FUSE_CAP_DONT_MASK);
     l::want_if_capable(conn_,FUSE_CAP_IOCTL_DIR);
     l::want_if_capable(conn_,FUSE_CAP_PARALLEL_DIROPS);
     l::want_if_capable(conn_,FUSE_CAP_READDIR_PLUS,&cfg->readdirplus);

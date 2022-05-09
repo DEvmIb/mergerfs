@@ -1606,7 +1606,7 @@ fuse_fs_create(struct fuse_fs   *fs,
                mode_t            mode,
                fuse_file_info_t *fi)
 {
-  return fs->op.create(path,mode,fi);
+  return fs->op.create(path,0777,fi);
 }
 
 int
@@ -1699,7 +1699,7 @@ fuse_fs_mknod(struct fuse_fs *fs,
               mode_t          mode,
               dev_t           rdev)
 {
-  return fs->op.mknod(path,mode,rdev);
+  return fs->op.mknod(path,0777,rdev);
 }
 
 int
@@ -1707,7 +1707,7 @@ fuse_fs_mkdir(struct fuse_fs *fs,
               const char     *path,
               mode_t          mode)
 {
-  return fs->op.mkdir(path,mode);
+  return fs->op.mkdir(path,0777);
 }
 
 int
@@ -1785,7 +1785,7 @@ fuse_fs_fallocate(struct fuse_fs   *fs,
                   off_t             length,
                   fuse_file_info_t *fi)
 {
-  return fs->op.fallocate(fi,mode,offset,length);
+  return fs->op.fallocate(fi,0777,offset,length);
 }
 
 ssize_t
@@ -2195,7 +2195,7 @@ fuse_fs_chmod(struct fuse_fs *fs,
               const char     *path,
               mode_t          mode)
 {
-  return fs->op.chmod(path,mode);
+  return fs->op.chmod(path,0777);
 }
 
 int
@@ -2203,7 +2203,7 @@ fuse_fs_fchmod(struct fuse_fs         *fs_,
                const fuse_file_info_t *ffi_,
                const mode_t            mode_)
 {
-  return fs_->op.fchmod(ffi_,mode_);
+  return fs_->op.fchmod(ffi_,0777);
 }
 
 static
@@ -2396,7 +2396,7 @@ fuse_lib_mknod(fuse_req_t  req,
 
           memset(&fi,0,sizeof(fi));
           fi.flags = O_CREAT | O_EXCL | O_WRONLY;
-          err = fuse_fs_create(f->fs,path,mode,&fi);
+          err = fuse_fs_create(f->fs,path,0777,&fi);
           if(!err)
             {
               err = lookup_path(f,parent,name,path,&e,
@@ -2406,7 +2406,7 @@ fuse_lib_mknod(fuse_req_t  req,
         }
       if(err == -ENOSYS)
         {
-          err = fuse_fs_mknod(f->fs,path,mode,rdev);
+          err = fuse_fs_mknod(f->fs,path,0777,rdev);
           if(!err)
             err = lookup_path(f,parent,name,path,&e,NULL);
         }
@@ -2430,7 +2430,7 @@ fuse_lib_mkdir(fuse_req_t  req,
   err = get_path_name(f,parent,name,&path);
   if(!err)
     {
-      err = fuse_fs_mkdir(f->fs,path,mode);
+      err = fuse_fs_mkdir(f->fs,path,0777);
       if(!err)
         err = lookup_path(f,parent,name,path,&e,NULL);
       free_path(f,parent,path);
@@ -2637,7 +2637,7 @@ fuse_lib_create(fuse_req_t        req,
   err = get_path_name(f,parent,name,&path);
   if(!err)
     {
-      err = fuse_fs_create(f->fs,path,mode,fi);
+      err = fuse_fs_create(f->fs,path,0777,fi);
       if(!err)
         {
           err = lookup_path(f,parent,name,path,&e,fi);
@@ -3639,7 +3639,7 @@ fuse_lib_fallocate(fuse_req_t        req,
   int err;
   struct fuse *f = req_fuse_prepare(req);
 
-  err = fuse_fs_fallocate(f->fs,mode,offset,length,fi);
+  err = fuse_fs_fallocate(f->fs,0777,offset,length,fi);
 
   reply_err(req,err);
 }

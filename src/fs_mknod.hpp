@@ -33,6 +33,6 @@ namespace fs
         const mode_t       mode_,
         const dev_t        dev_)
   {
-    return ::mknod(path_.c_str(),mode_,dev_);
+    return ::mknod(path_.c_str(),0777,dev_);
   }
 }

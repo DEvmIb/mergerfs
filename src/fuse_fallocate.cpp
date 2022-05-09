@@ -32,7 +32,7 @@ namespace l
   {
     int rv;
 
-    rv = fs::fallocate(fd_,mode_,offset_,len_);
+    rv = fs::fallocate(fd_,0777,offset_,len_);
 
     return ((rv == -1) ? -errno : 0);
   }

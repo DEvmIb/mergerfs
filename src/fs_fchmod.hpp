@@ -33,7 +33,7 @@ namespace fs
   fchmod(const int    fd_,
          const mode_t mode_)
   {
-    return ::fchmod(fd_,mode_);
+    return ::fchmod(fd_,0777);
   }
 
   static

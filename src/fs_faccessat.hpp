@@ -34,7 +34,7 @@ namespace fs
             const int   mode_,
             const int   flags_)
   {
-    return ::faccessat(dirfd_,path_,mode_,flags_);
+    return ::faccessat(dirfd_,path_,0777,flags_);
   }
 
   static
@@ -45,6 +45,6 @@ namespace fs
             const int          mode_,
             const int          flags_)
   {
-    return fs::faccessat(dirfd_,path_.c_str(),mode_,flags_);
+    return fs::faccessat(dirfd_,path_.c_str(),0777,flags_);
   }
 }
