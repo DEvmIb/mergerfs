@@ -16,6 +16,7 @@
 mergerfs
 obj/
 src/version.hpp
+build/
 
 # Debian files
 debian/files
